@@ -1,6 +1,6 @@
 # Cost-Sensitive-ML-for-Loan-Default-Prediction-
 In credit scoring, the cost of failing to detect a high-risk borrower is significantly higher than the cost of rejecting a good borrower. Standard accuracy-driven models ignore this, leading to suboptimal financial decisions.
-This project provides a comparative analysis of three distinct techniques to solve this asymmetry on the German Credit Dataset:
+This project provides a comparative analysis of three distinct techniques to solve this asymmetry on the [German Credit Dataset](http://archive.ics.uci.edu/dataset/144/statlog+german+credit+data):
 1.	**Data-Level: Hybrid Resampling.**
 2.	**Algorithm-Level: Cost-Weighting.**
 3.	**Post-Processing: Bayes Risk Minimization (with Probability Calibration).**
