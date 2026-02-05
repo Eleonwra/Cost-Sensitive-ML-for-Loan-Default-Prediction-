@@ -52,10 +52,13 @@ Three methodologies were evaluated to align model behavior with the 1:5 asymmetr
   This ensures that the final prediction is not just the most "probable" outcome, but the one that carries the lowest financial risk for the institution.
 
 
--	**Example**: Consider a borrower with a 25% predicted probability of default.
+-	**Example**: Consider a borrower with a 25% predicted probability of default. 
 1.	Granting the loan carries an expected cost of 1.25 (0.25 x 5 penalty).
 2.	Rejecting the loan carries an expected cost of 0.75 (0.75 x 1 penalty).
 3.	Decision: The system rejects the application because the risk-adjusted cost of rejection is lower than the risk-adjusted cost of granting the loan.
+   
+The calculation is based on the Cost Matrix of the German dataset used in this project, where a penalty of 5 is assigned to False Negatives (missing a high-risk borrower) and 1 to False Positives (rejecting a good borrower).
+
 -	**Calibration**: The validity of the Bayes Risk calculation depends entirely on the probabilistic integrity of the model. Many classifiers produce biased probability estimates (overconfident or underconfident). To ensure these values represent true empirical frequencies, Probability Calibration (via Isotonic Regression or Platt Scaling/Sigmoid) is applied. This step transforms raw model scores into reliable risk estimates.
 
 
