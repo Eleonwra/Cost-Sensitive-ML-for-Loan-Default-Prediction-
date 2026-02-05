@@ -9,7 +9,7 @@ This project provides a comparative analysis of three distinct techniques to sol
 
 ```bash
 #Clone the repo
-git clone https://github.com/your-username/credit-guard.git
+git clone https://github.com/Eleonwra/Cost-Sensitive-ML-for-Loan-Default-Prediction-.git
 
 #Install dependencies
 pip install -r requirements.txt
