@@ -66,7 +66,7 @@ Three methodologies were evaluated to align model behavior with the 1:5 asymmetr
 2.	Rejecting the loan carries an expected cost of 0.75 (0.75 x 1 penalty).
 3.	Decision: The system rejects the application because the risk-adjusted cost of rejection is lower than the risk-adjusted cost of granting the loan.
    
-The calculation is based on the Cost Matrix of the German dataset used in this project, where a penalty of 5 is assigned to False Negatives (missing a high-risk borrower) and 1 to False Positives (rejecting a good borrower).
+The calculation is based on the Cost Matrix of the German dataset used in this project, where a penalty of 5 is assigned to False Negatives (accepting a bad borrower) and 1 to False Positives (rejecting a good borrower).
 
 -	**Calibration**: The validity of the Bayes Risk calculation depends entirely on the probabilistic integrity of the model. Many classifiers produce biased probability estimates (overconfident or underconfident). To ensure these values represent true empirical frequencies, Probability Calibration (via Isotonic Regression and Platt Scaling/Sigmoid) is applied. 
 
