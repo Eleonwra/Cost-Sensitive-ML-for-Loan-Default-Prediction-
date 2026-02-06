@@ -36,7 +36,7 @@ $$Total\ Cost = \sum (Confusion\ Matrix \odot Cost\ Matrix)$$
 Three methodologies were evaluated to align model behavior with the 1:5 asymmetric cost ratio (False Positive vs. False Negative).
 
 ### Data- Level: Hybrid Resampling
--	**Logic**: The majority class ("Good") is undersampled by 50%, followed by oversampling the minority class ("Bad") until the 5:1 cost-analogous ratio is achieved.
+-	**Logic**: The majority class ("Good") is undersampled by 50%, followed by oversampling the minority class ("Bad") until the 1:5 cost-analogous ratio is achieved.
 -	**Example**: In a fold with 500 Good/100 Bad samples, the resulting training set is 250 Good/1250 Bad. This forces the model to prioritize the expensive class as the statistical majority.
 
 ### Algorithm-Level: Cost-Weighting
