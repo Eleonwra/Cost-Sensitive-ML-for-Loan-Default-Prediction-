@@ -9,7 +9,7 @@ This project provides a comparative analysis of three distinct techniques to sol
 
 ```bash
 #Clone the repo
-git clone https://github.com/Eleonwra/Cost-Sensitive-ML-for-Loan-Default-Prediction-.git
+git clone https://github.com/Eleonwra/cost-sensitive-ml-for-loan-default-prediction.git
 
 #Install dependencies
 pip install -r requirements.txt
