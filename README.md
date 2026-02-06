@@ -60,7 +60,7 @@ Three methodologies were evaluated to align model behavior with the 1:5 asymmetr
    
 The calculation is based on the Cost Matrix of the German dataset used in this project, where a penalty of 5 is assigned to False Negatives (missing a high-risk borrower) and 1 to False Positives (rejecting a good borrower).
 
--	**Calibration**: The validity of the Bayes Risk calculation depends entirely on the probabilistic integrity of the model. Many classifiers produce biased probability estimates (overconfident or underconfident). To ensure these values represent true empirical frequencies, Probability Calibration (via Isotonic Regression or Platt Scaling/Sigmoid) is applied. This step transforms raw model scores into reliable risk estimates.
+-	**Calibration**: The validity of the Bayes Risk calculation depends entirely on the probabilistic integrity of the model. Many classifiers produce biased probability estimates (overconfident or underconfident). To ensure these values represent true empirical frequencies, Probability Calibration (via Isotonic Regression and Platt Scaling/Sigmoid) is applied. 
 
 
 ## Results & Visual Analysis
