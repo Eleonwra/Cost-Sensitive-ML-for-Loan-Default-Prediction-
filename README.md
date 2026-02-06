@@ -64,8 +64,9 @@ The calculation is based on the Cost Matrix of the German dataset used in this p
 
 
 ## Results & Visual Analysis
--	**Cost Leaderboard**: A bar chart comparing the total financial loss across strategies.
-
+-	**Global Cost Leaderboard**: A bar chart with error bars comparing the total financial loss across strategies and classifiers.
+-	**Strategy Performance by Classifier**: A grouped bar chart displaying the financial performance of each specific algorithm.
 ## Key Findings
 -	**Cost vs. Accuracy**: Optimizing for the lowest financial cost often requires sacrificing global accuracy to ensure high-cost defaults are caught.
 -	**Optimization Success**: All three cost-sensitive methodologies consistently outperformed the baseline by prioritizing the 5:1 penalty ratio during the decision-making process.
+-	**Model Specifics**: Bayes Risk Minimization performed best overall, but showed diminished gains with Naive Bayes. This is attributed to the "Naive" independence assumption, which produces biased probability estimates (The "Double-Counting" Effect) that undermine the cost-minimization logic.
