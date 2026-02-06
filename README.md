@@ -18,19 +18,25 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## Evaluation 
-As the primary objective was to compare 3 different cost-sensitive techniques rather than optimizing individual model performance, a standard 5-Fold Stratified Cross-Validation was used.
+## **Model Selection**
+### **Generative Family: Gaussian Naive Bayes**
+- **Logic**: It uses Bayes' Theorem to model the underlying distribution of each class, assuming features are independent and follow a Gaussian curve.
 
-## Metrics
--	**Total Financial Cost**: The primary metric used for ranking. This is calculated as the **mean cost across all 5 folds** to ensure the result is statistically robust. The cost for each fold is derived using the Hadamard product of the Confusion Matrix and the predefined Cost Matrix:
+- **Role**: Serves as a test for probabilistic integrity. Because it "naively" assumes features are independent, it suffers from the Double-Counting Effect: redundant information (like highly correlated financial variables) is treated as separate evidence. This results in "pushed" probabilities—the model becomes overconfident, hallucinating 0% or 100% risk when the reality is much more nuanced.
 
-<br/>
+### **Geometric Family: Linear Support Vector Classifier**
 
-$$Total\ Cost = \sum (Confusion\ Matrix \odot Cost\ Matrix)$$
+- **Logic**: A discriminative model that finds the optimal linear hyperplane to maximize the margin between "Good" and "Bad" borrowers.
 
-<br/>
+- **Role**: Establishes a high-dimensional baseline. It demonstrates how a non-probabilistic, margin-based model can be adapted for cost-sensitive tasks.
 
--	**Accuracy**: Used as a secondary diagnostic to monitor the trade-off between general predictive power and risk mitigation.
+- **Probability Mapping**: As the SVC objective function is non-probabilistic, optimizing for the geometric margin rather than class likelihood—probabilities were derived via Platt Scaling. This involves fitting a logistic regression model to the SVC’s uncalibrated decision scores (the signed distances from the hyperplane) to map them into a $[0, 1]$ probability range.
+
+### **Ensemble Family: Random Forest**
+
+- **Logic**: A non-linear approach that aggregates the predictions of multiple decision trees to reduce variance and capture complex feature interactions.
+
+- **Role**: Represents modern non-linear benchmarks. It generates probabilities through ensemble voting. By providing a non-linear contrast to the Linear SVC and Gaussian Naive Bayes, the Random Forest validates whether cost-sensitive strategies remain effective when applied to high-capacity, algorithmic-level models.
 
 ## Optimization Strategies
 Three methodologies were evaluated to align model behavior with the 1:5 asymmetric cost ratio (False Positive vs. False Negative).
@@ -62,6 +68,19 @@ The calculation is based on the Cost Matrix of the German dataset used in this p
 
 -	**Calibration**: The validity of the Bayes Risk calculation depends entirely on the probabilistic integrity of the model. Many classifiers produce biased probability estimates (overconfident or underconfident). To ensure these values represent true empirical frequencies, Probability Calibration (via Isotonic Regression and Platt Scaling/Sigmoid) is applied. 
 
+## Evaluation 
+As the primary objective was to compare 3 different cost-sensitive techniques rather than optimizing individual model performance, a standard 5-Fold Stratified Cross-Validation was used.
+
+## Metrics
+-	**Total Financial Cost**: The primary metric used for ranking. This is calculated as the **mean cost across all 5 folds** to ensure the result is statistically robust. The cost for each fold is derived using the Hadamard product of the Confusion Matrix and the predefined Cost Matrix:
+
+<br/>
+
+$$Total\ Cost = \sum (Confusion\ Matrix \odot Cost\ Matrix)$$
+
+<br/>
+
+-	**Accuracy**: Used as a secondary diagnostic to monitor the trade-off between general predictive power and risk mitigation.
 
 ## Results & Visual Analysis
 -	**Global Cost Leaderboard**: A bar chart with error bars comparing the total financial loss across strategies and classifiers.
